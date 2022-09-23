@@ -1,6 +1,6 @@
 {
   "name": "@fido.id/eslint-config-fido",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Fido.id shared ESLint configs, aiming to improve code quality of react applications",
   "main": "src/index.js",
   "repository": {
