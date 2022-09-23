@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/fido-id/eslint-config-fido/compare/v1.2.0...v1.2.1) (2022-09-23)
+
+
+### Bug Fixes
+
+* **project:** bump version ([3ceb704](https://github.com/fido-id/eslint-config-fido/commit/3ceb704eabd82414122dbaf620fe910367cea9e4))
+
 # [1.2.0](https://github.com/fido-id/eslint-config-fido/compare/v1.1.1...v1.2.0) (2022-09-23)
 
 
