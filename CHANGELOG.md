@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/fido-id/eslint-config-fido/compare/v1.1.1...v1.2.0) (2022-09-23)
+
+
+### Features
+
+* **eslint:** added new rules ([0c0a4fb](https://github.com/fido-id/eslint-config-fido/commit/0c0a4fbc72ba5505e04f13774d8a0ea6bc2fb7ba))
+
 ## [1.1.1](https://github.com/fido-id/eslint-config-fido/compare/v1.1.0...v1.1.1) (2022-09-23)
 
 
