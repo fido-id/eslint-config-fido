@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/fido-id/eslint-config-fido/compare/v1.1.0...v1.1.1) (2022-09-23)
+
+
+### Bug Fixes
+
+* **dependencies:** from devDepency to dependecy ([de6dbd2](https://github.com/fido-id/eslint-config-fido/commit/de6dbd2770be3dc6847c557774e84f8cd0ed3efd))
+
 # [1.1.0](https://github.com/fido-id/eslint-config-fido/compare/v1.0.0...v1.1.0) (2022-09-23)
 
 
