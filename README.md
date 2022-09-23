@@ -23,7 +23,7 @@ Import this config into your own ESLint configuration using the `extends` option
 ```js
 {
   "eslintConfig": {
-    "extends": "@fido.id/eslint-config-fido",
+    "extends": "@fido.id/eslint-config-fido"
   }
 }
 ```
@@ -32,7 +32,7 @@ Import this config into your own ESLint configuration using the `extends` option
 
 ```js
 module.exports = {
-  extends: "@fido.id/eslint-config-fido",
+  extends: "@fido.id/eslint-config-fido"
 };
 ```
 
