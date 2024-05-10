@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/fido-id/eslint-config-fido/compare/v1.2.1...v1.3.0) (2024-05-10)
+
+
+### Features
+
+* **project:** upgrade to eslint8 ([2a9b167](https://github.com/fido-id/eslint-config-fido/commit/2a9b16736c965f2ceec0eeaa7be06007a2714683))
+* **project:** upgrade to eslint8 ([42d6b9a](https://github.com/fido-id/eslint-config-fido/commit/42d6b9a634e3dec15bd88baf00b4eb64694330f0))
+* **rules:** edit new rules ([c84c2ac](https://github.com/fido-id/eslint-config-fido/commit/c84c2ac52cbae3790652e0ccda0d270641511f77))
+
 ## [1.2.1](https://github.com/fido-id/eslint-config-fido/compare/v1.2.0...v1.2.1) (2022-09-23)
 
 
