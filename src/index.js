@@ -8,6 +8,7 @@ const pkg = require("../package.json");
 const noNestedTernaryOperators = require("./lib/rules/no-nested-ternary-operators");
 const preferEarlyReturns = require("./lib/rules/prefer-early-returns");
 const preferObjectParameters = require("./lib/rules/prefer-object-parameters");
+const muiPreferComponents = require("./lib/rules/mui-prefer-components");
 
 // React configs (only used in the "react" preset)
 const reactRecommended = require("eslint-plugin-react/configs/recommended");
@@ -20,6 +21,7 @@ const plugin = {
     "no-nested-ternary-operators": noNestedTernaryOperators,
     "prefer-early-returns": preferEarlyReturns,
     "prefer-object-parameters": preferObjectParameters,
+    "mui-prefer-components": muiPreferComponents,
   },
 };
 
@@ -59,8 +61,10 @@ const reactRegistration = {
     // React-specific overrides
     "react/no-namespace": "off",
     "react/iframe-missing-sandbox": "off",
-    "react/display-name": "warn",
     "react/no-unescaped-entities": "off",
+
+    // Custom rules
+    "tf/mui-prefer-components": "error",
   },
 };
 Object.assign(plugin.configs, {

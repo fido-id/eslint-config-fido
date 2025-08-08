@@ -91,9 +91,8 @@ This package provides the following custom ESLint rules:
 | `no-nested-ternary-operators` | Disallow nested ternary operators for better readability. | `const x = a ? b : c;` | `const x = a ? (b ? 1 : 2) : 3;` | Nested ternaries are hard to read and should be avoided. |
 | `prefer-early-returns` | Prefer early returns (guard clauses) over else-if and else blocks that only contain an if. | `function f(a){ if (!a) return; doWork(a); }` | `function f(a,b){ if (a > 0) { doA(); } else if (b > 0) { doB(); } else { doC(); } }` | Avoids deep nesting and improves code clarity by using guard clauses instead of else/else-if. |
 | `prefer-object-parameters` | Prefer a single object parameter for functions with many parameters, to improve readability and extensibility. | `function foo({a, b, c, d, e}) {}` | `function foo(a, b, c, d, e) {}` | When a function takes more than a set number of parameters (default: 4), use a single object parameter instead of multiple positional arguments. |
+| `mui-prefer-components` | Prefer Material UI components over native HTML elements in JSX when an equivalent exists. | `<Box><Typography>Text</Typography></Box>` | `<div><p>Text</p></div>` | Enforces use of MUI components (e.g., Box, Typography, Button) instead of native HTML tags in JSX for consistency with the design system. |
 
 ## Philosophy
 
 This config is designed to mark severe problems (ex: syntax errors) as errors and stylistic issues as warnings. This lets your team apply policies like, "make sure a commit has no errors but ignore warnings if the commit didn't introduce them."
-
-It's also designed to be a more lenient config for teams who are stronger at decision-making and have a culture of osmotically learning coding guidelines and benefit more from flexibility than rigid rules.
