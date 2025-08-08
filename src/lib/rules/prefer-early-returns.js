@@ -22,7 +22,7 @@ module.exports = {
     function isElseBlockWithSingleIf(block) {
       if (!block || block.type !== "BlockStatement") return false;
       const body = block.body.filter(
-        (s) => s.type !== "EmptyStatement" // ignora statement vuoti
+        (s) => s.type !== "EmptyStatement", // ignora statement vuoti
       );
       return body.length === 1 && body[0].type === "IfStatement";
     }

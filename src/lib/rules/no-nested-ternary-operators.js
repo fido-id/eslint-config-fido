@@ -3,14 +3,15 @@
  */
 module.exports = {
   meta: {
-    type: 'problem',
+    type: "problem",
     docs: {
-      description: 'Disallow using ternary operators inside other ternary operators',
+      description:
+        "Disallow using ternary operators inside other ternary operators",
       recommended: false,
     },
     schema: [],
     messages: {
-      nested: 'Do not use ternary operators inside other ternaries.',
+      nested: "Do not use ternary operators inside other ternaries.",
     },
   },
 
@@ -18,28 +19,28 @@ module.exports = {
     const sourceCode = context.getSourceCode();
 
     function findNestedConditional(start) {
-      if (!start || typeof start !== 'object') return null;
+      if (!start || typeof start !== "object") return null;
 
       const stack = [start];
       const keysMap = sourceCode.visitorKeys || {};
 
       while (stack.length) {
         const node = stack.pop();
-        if (!node || typeof node !== 'object') continue;
+        if (!node || typeof node !== "object") continue;
 
-        if (node.type === 'ConditionalExpression') {
+        if (node.type === "ConditionalExpression") {
           return node;
         }
 
         const keys = keysMap[node.type] || [];
         for (const key of keys) {
           const child = node[key];
-          if (Array.isArray(child)) {
-            for (let i = child.length - 1; i >= 0; i--) {
-              if (child[i] && typeof child[i] === 'object') stack.push(child[i]);
+          const children = Array.isArray(child) ? child : [child];
+
+          for (let i = children.length - 1; i >= 0; i--) {
+            if (children[i] && typeof children[i] === "object") {
+              stack.push(children[i]);
             }
-          } else if (child && typeof child === 'object') {
-            stack.push(child);
           }
         }
       }
@@ -53,7 +54,7 @@ module.exports = {
         for (const part of parts) {
           const nested = findNestedConditional(part);
           if (nested) {
-            context.report({ node: nested, messageId: 'nested' });
+            context.report({ node: nested, messageId: "nested" });
           }
         }
       },
