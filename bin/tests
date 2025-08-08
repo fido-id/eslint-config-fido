@@ -21,7 +21,7 @@ function bin::tests::jest() {
   docker run \
     -v "${ROOT}:/opt/project" \
     -w /opt/project \
-    node:20-alpine yarn test
+    node:20-alpine yarn test $@
 }
 
 
