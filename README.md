@@ -90,6 +90,7 @@ This package provides the following custom ESLint rules:
 |-----------|-------------|---------------|-----------------|-------------|
 | `no-nested-ternary-operators` | Disallow nested ternary operators for better readability. | `const x = a ? b : c;` | `const x = a ? (b ? 1 : 2) : 3;` | Nested ternaries are hard to read and should be avoided. |
 | `prefer-early-returns` | Prefer early returns (guard clauses) over else-if and else blocks that only contain an if. | `function f(a){ if (!a) return; doWork(a); }` | `function f(a,b){ if (a > 0) { doA(); } else if (b > 0) { doB(); } else { doC(); } }` | Avoids deep nesting and improves code clarity by using guard clauses instead of else/else-if. |
+| `prefer-object-parameters` | Prefer a single object parameter for functions with many parameters, to improve readability and extensibility. | `function foo({a, b, c, d, e}) {}` | `function foo(a, b, c, d, e) {}` | When a function takes more than a set number of parameters (default: 4), use a single object parameter instead of multiple positional arguments. |
 
 ## Philosophy
 

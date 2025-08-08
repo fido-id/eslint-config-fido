@@ -7,6 +7,7 @@ const pkg = require("../package.json");
 // local rules
 const noNestedTernaryOperators = require("./lib/rules/no-nested-ternary-operators");
 const preferEarlyReturns = require("./lib/rules/prefer-early-returns");
+const preferObjectParameters = require("./lib/rules/prefer-object-parameters");
 
 // React configs (only used in the "react" preset)
 const reactRecommended = require("eslint-plugin-react/configs/recommended");
@@ -18,6 +19,7 @@ const plugin = {
   rules: {
     "no-nested-ternary-operators": noNestedTernaryOperators,
     "prefer-early-returns": preferEarlyReturns,
+    "prefer-object-parameters": preferObjectParameters,
   },
 };
 
@@ -28,6 +30,7 @@ const baseRegistration = {
     // Custom rules
     "tf/no-nested-ternary-operators": "error",
     "tf/prefer-early-returns": "error",
+    "tf/prefer-object-parameters": "error",
 
     // General TypeScript/JavaScript rules (no react/* rules here)
     "@typescript-eslint/consistent-type-assertions": "warn",
