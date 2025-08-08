@@ -22,7 +22,7 @@ module.exports = {
     function isElseBlockWithSingleIf(block) {
       if (!block || block.type !== "BlockStatement") return false;
       const body = block.body.filter(
-        (s) => s.type !== "EmptyStatement", // ignora statement vuoti
+        (s) => s.type !== "EmptyStatement", // ignore empty statements
       );
       return body.length === 1 && body[0].type === "IfStatement";
     }
@@ -32,7 +32,7 @@ module.exports = {
         const alt = node.alternate;
         if (!alt) return;
 
-        // Case 1 1: else-if
+        // Case 1: else-if
         if (alt.type === "IfStatement") {
           context.report({
             node: alt,
@@ -40,7 +40,7 @@ module.exports = {
             suggest: [
               {
                 messageId: "suggestRewrite",
-                fix: () => null, // niente auto-fix
+                fix: () => null, // no auto-fix
               },
             ],
           });

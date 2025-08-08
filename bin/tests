@@ -3,21 +3,21 @@
 source "${ROOT}/bin/eslint"
 
 function bin::tests::execute() {
-  bin::tests::execute $@ && local tests="✔" || local tests="✘"
-   bin::eslint::execute $@ && local eslint="✔" || local eslint="✘"
+  bin::tests::jest $@ && local tests="✔" || local tests="✘"
+  bin::eslint::execute $@ && local eslint="✔" || local eslint="✘"
    
    say "
 
   @b[[.::Build recap::.]]
   @${eslint}Linting\t: @b[[${eslint} ]]
-  @${tests}Tests\t: @b[[${tests} ]]
+  @${tests}Tests\t\t: @b[[${tests} ]]
 "
 
   if [[ ${eslint} == "✘" || ${tests} == "✘" ]]; then exit 1; fi # Ensure consistent exit code
   exit 0
 }
 
-function bin::tests::execute() {
+function bin::tests::jest() {
   docker run \
     -v "${ROOT}:/opt/project" \
     -w /opt/project \

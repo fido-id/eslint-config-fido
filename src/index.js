@@ -7,14 +7,14 @@ const globals = require("globals");
 const pkg = require("../package.json");
 
 // local rules
-const noNestedTernaryInside = require("./lib/rules/no-nested-ternary-operators");
+const noNestedTernaryOperators = require("./lib/rules/no-nested-ternary-operators");
 const preferEarlyReturns = require("./lib/rules/prefer-early-returns");
 
 const plugin = {
   meta: { name: pkg.name, version: pkg.version, namespace: "tf" },
   configs: {},
   rules: {
-    "no-nested-ternary-inside": noNestedTernaryInside,
+    "no-nested-ternary-operators": noNestedTernaryOperators,
     "prefer-early-returns": preferEarlyReturns,
   },
 };
@@ -25,7 +25,7 @@ const pluginRegistration = {
   },
   rules: {
     // Custom rules
-    [`tf/no-nested-ternary-inside`]: "error",
+    [`tf/no-nested-ternary-operators`]: "error",
     [`tf/prefer-early-returns`]: "error",
 
     // Base rules

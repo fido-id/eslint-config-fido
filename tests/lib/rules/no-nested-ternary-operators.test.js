@@ -5,7 +5,7 @@ const ruleTester = new RuleTester({
   parserOptions: { ecmaVersion: "latest", sourceType: "module" },
 });
 
-ruleTester.run("no-nested-ternary-inside", rule, {
+ruleTester.run("no-nested-ternary-operators", rule, {
   valid: [
     // valid ternary
     `const x = a ? b : c;`,

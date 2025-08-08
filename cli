@@ -3,7 +3,7 @@ set -e
 
 export ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 export PROJECT_NAME="eslint-config-fido"           # will be used across all system and is a sandbox variable used to differentiate all the services
-export BIN_FOLDER="${ROOT}/bin" || "." # it's the base path of the bin folder used to quickly access the script location
+export BIN_FOLDER="${ROOT}/bin"
 # shellcheck disable=SC2155
 export FILES=$(find "${BIN_FOLDER}" -maxdepth 1 -type f | sort)
 

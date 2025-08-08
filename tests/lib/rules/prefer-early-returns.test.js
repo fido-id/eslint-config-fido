@@ -7,10 +7,10 @@ const tester = new RuleTester({
 
 tester.run("prefer-early-return", rule, {
   valid: [
-    // if senza else
+    // if withtout else
     `function f(a){ if (!a) return; doWork(a); }`,
 
-    // if annidati ma senza else
+    // nested ifs but without else
     `
       function g(a,b){
         if (!a) return;
@@ -19,7 +19,7 @@ tester.run("prefer-early-return", rule, {
       }
     `,
 
-    // else normale con contenuto non-if (non forziamo a rimuoverlo con questa regola)
+    // normal else with non-if content (we do not force its removal with this rule)
     `
       function h(x){
         if (x > 0) doA();
@@ -57,7 +57,7 @@ tester.run("prefer-early-return", rule, {
       errors: [{ messageId: "noElseBlockIf" }],
     },
 
-    // variante compatta
+    // compact variant
     {
       code: `
         if (cond) foo(); else { if (other) bar(); }
