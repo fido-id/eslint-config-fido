@@ -11,7 +11,8 @@
     "eslint",
     "eslintconfig",
     "eslint-config",
-    "fido.id"
+    "fido.id",
+    "trustfull.com"
   ],
   "author": {
     "email": "marco@fido.id",
@@ -40,6 +41,7 @@
     "typescript": ">=4.2.0"
   },
   "dependencies": {
+    "@types/node": "20",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.1.3",
     "eslint-plugin-react": "7.34.1",
@@ -56,7 +58,7 @@
     "eslint": "^8.0.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-n": "^17.6.0 ",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
     "jest": "^30.0.5",
     "prettier": "^3.2.0",
