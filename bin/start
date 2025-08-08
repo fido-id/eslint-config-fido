@@ -1,0 +1,12 @@
+#!/bin/bash
+
+function bin::start::execute() {
+  docker run \
+    -v "${ROOT}:/opt/project" \
+    -w /opt/project \
+    node:20-alpine yarn install
+}
+
+function bin::start::description() {
+  echo "Install all project dependencies inside a Docker container."
+}
