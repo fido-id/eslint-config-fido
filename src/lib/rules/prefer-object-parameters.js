@@ -104,7 +104,7 @@ module.exports = {
           }
           return parts.join(".");
         }
-      } catch (_) {}
+      } catch {}
       return "";
     }
 

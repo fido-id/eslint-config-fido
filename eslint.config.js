@@ -5,5 +5,10 @@ const tfPlugin = require('./src/index');
 
 module.exports = [
   ...compat.extends('eslint-config-standard'),
-  ...tfPlugin.configs.recommended
+  ...tfPlugin.configs.recommended,
+  {
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    }
+  }
 ];

@@ -66,12 +66,12 @@ const reactRegistration = {
 Object.assign(plugin.configs, {
   recommended: [
     eslintPluginPrettierRecommended,
-    ...eslintTsEslint.configs.recommended,
+    ...eslintTsEslint.configs.strict,
     baseRegistration,
   ],
   react: [
     eslintPluginPrettierRecommended,
-    ...eslintTsEslint.configs.recommended,
+    ...eslintTsEslint.configs.strict,
     reactRecommended,
     reactJSXRuntime,
     reactRegistration,
