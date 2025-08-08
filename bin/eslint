@@ -16,17 +16,7 @@ function bin::eslint::execute() {
 
 }
 
-function bin::eslint::help() {
-  bin::eslint::description
-
-  say "
-  options:
-  @green[[--fix]]\t\t\t will run eslint with autofix option enabled
-  "
-}
-
-
 function bin::eslint::description() {
   # shellcheck disable=SC2028
-  echo "Run eslint static checks"
+  echo "Run eslint static checks. --fix will run eslint with autofix option enabled."
 }

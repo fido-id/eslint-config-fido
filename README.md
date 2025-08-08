@@ -1,12 +1,8 @@
-
-
 # eslint-config-fido
 
 Shared ESLint configs for React projects.
 
 > **Warning:** This package has only been tested with ESLint 8. Compatibility with other versions is not guaranteed.
-
-
 
 
 ## Table of Contents
@@ -62,8 +58,10 @@ module.exports = [
 
 ## CLI Usage
 
-This package provides a CLI for running tests and linting:
 
+This package provides a CLI for running tests, linting, and installing dependencies:
+
+- `./cli start` — Install all project dependencies inside a Docker container.
 - `./cli tests` — Run all tests.
 - `./cli tests --fix` — Run linting and automatically fix problems.
 
