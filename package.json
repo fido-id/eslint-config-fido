@@ -28,10 +28,11 @@
     }
   ],
   "scripts": {
-    "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint --fix src/**/*.js",
+    "lint": "eslint src/**/*.js tests/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js tests/**/*.js",
     "commit": "cz",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "test": "jest"
   },
   "peerDependencies": {
     "eslint": ">=8.57.0",
@@ -47,18 +48,19 @@
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/git": "10.0.1",
-    "@semantic-release/github": "^10.0.0",
+    "@semantic-release/github": "^11.0.0",
     "@semantic-release/npm": "^12.0.0",
     "commitizen": "^4.3.0",
-    "conventional-changelog-conventionalcommits": "^8.0.0",
+    "conventional-changelog-conventionalcommits": "^9.0.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.0.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^17.6.0 ",
     "eslint-plugin-promise": "^6.0.0",
+    "jest": "^30.0.5",
     "prettier": "^3.2.0",
-    "semantic-release": "^23.0.0"
+    "semantic-release": "^24.0.0"
   },
   "config": {
     "commitizen": {
