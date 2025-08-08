@@ -1,3 +1,35 @@
+# [2.0.0](https://github.com/fido-id/eslint-config-fido/compare/v1.3.0...v2.0.0) (2025-08-08)
+
+
+### Features
+
+* **project:** add new custom rules ([#2](https://github.com/fido-id/eslint-config-fido/issues/2)) ([d961631](https://github.com/fido-id/eslint-config-fido/commit/d96163190205940e67142a41185c993f5d54c42e))
+
+
+### BREAKING CHANGES
+
+* **project:** For those using the recommended set on React projects, it is now necessary to use
+the react set
+
+* style(code): minor fixes
+
+* docs(readme): update readme
+
+* ci(github): pipeline for PRs
+
+* feat(rules): add prefer-object-parameters
+
+* feat(rules): update typescript-eslint
+
+update typescript-eslint to support newer versions of TypeScript. we are switching to the strict
+ruleset for TypeScript
+
+* ci(github): harden the workflow: least-privilege token,  cancel superseded runs, and set a timeout
+
+* ci(github): collect coverage
+
+* feat(rules): add new mui-prefer-components
+
 # [1.3.0](https://github.com/fido-id/eslint-config-fido/compare/v1.2.1...v1.3.0) (2024-05-10)
 
 
