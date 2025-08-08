@@ -7,7 +7,7 @@ const tester = new RuleTester({
 
 tester.run("prefer-early-return", rule, {
   valid: [
-    // if withtout else
+    // if without else
     `function f(a){ if (!a) return; doWork(a); }`,
 
     // nested ifs but without else
