@@ -1,0 +1,89 @@
+#!/bin/bash
+set -e
+
+export ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+export PROJECT_NAME="eslint-config-fido"           # will be used across all system and is a sandbox variable used to differentiate all the services
+export BIN_FOLDER="${ROOT}/bin" || "." # it's the base path of the bin folder used to quickly access the script location
+# shellcheck disable=SC2155
+export FILES=$(find "${BIN_FOLDER}" -maxdepth 1 -type f | sort)
+
+function say() {
+  local qualifier=""
+
+  if [[ -t 1 ]]; then
+    echo \
+      -e "${qualifier} $(tput bold)$@$(tput sgr0)" | sed \
+      -e "s/\(\(@\(red\|green\|yellow\|blue\|magenta\|cyan\|white\|reset\|b\|u\)\)\+\)[[]\{2\}\(.*\)[]]\{2\}/\1\4@reset/g" \
+      -e "s/@red/$(tput setaf 1)/g" \
+      -e "s/@✘/$(tput setaf 1)/g" \
+      -e "s/@green/$(tput setaf 2)/g" \
+      -e "s/@✔/$(tput setaf 2)/g" \
+      -e "s/@yellow/$(tput setaf 3)/g" \
+      -e "s/@blue/$(tput setaf 4)/g" \
+      -e "s/@magenta/$(tput setaf 5)/g" \
+      -e "s/@cyan/$(tput setaf 6)/g" \
+      -e "s/@white/$(tput setaf 7)/g" \
+      -e "s/@reset/$(tput sgr0)/g" \
+      -e "s/@b/$(tput bold)/g" \
+      -e "s/@u/$(tput sgr 0 1)/g"
+    return
+  fi
+
+  echo \
+    -e "${qualifier} $@" | sed \
+    -e "s/\(\(@\(red\|green\|yellow\|blue\|magenta\|cyan\|white\|reset\|b\|u\)\)\+\)[[]\{2\}\(.*\)[]]\{2\}/\1\4@reset/g" \
+    -e "s/@red//g" \
+    -e "s/@✘//g" \
+    -e "s/@green//g" \
+    -e "s/@✔//g" \
+    -e "s/@yellow//g" \
+    -e "s/@blue//g" \
+    -e "s/@magenta//g" \
+    -e "s/@cyan//g" \
+    -e "s/@white//g" \
+    -e "s/@reset//g" \
+    -e "s/@b//g" \
+    -e "s/@u//g"
+}
+
+if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]] || [[ "$1" == "" ]]; then
+  command_string=""
+  for FILE in ${FILES}; do
+    HELP_CMD=$(echo "${FILE}" | sed -e "s/.*bin\///")
+
+    source "${BIN_FOLDER}/${HELP_CMD}"
+    command_string="${command_string}\n\t${HELP_CMD}: $(bin::${HELP_CMD}::description)"
+
+  done
+  say "
+  List of commands
+  ${command_string}
+  "
+
+  exit
+fi
+
+CMD="${BIN_FOLDER}/$1"
+
+if [[ -f "$CMD" ]]; then
+  # shellcheck disable=SC1090
+  # shellcheck disable=SC2086
+  source ${CMD}
+
+  if [[ "$2" == "--help" ]]; then
+    # shellcheck disable=SC2068
+    bin::"${1}"::help $@
+    exit
+  fi
+
+   SCRIPT_NAME=${1}
+   shift
+   # shellcheck disable=SC2068
+   bin::"${SCRIPT_NAME}"::execute $@
+
+else
+  say "
+  Executable ${CMD} not found
+  ${command_string}"
+  exit 1
+fi

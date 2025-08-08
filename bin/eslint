@@ -1,0 +1,32 @@
+#!/bin/bash
+
+function bin::eslint::execute() {
+  if [[ ${1} == "--fix" ]]; then
+    docker run \
+      -v "${ROOT}:/opt/project" \
+      -w /opt/project \
+      node:20-alpine yarn lint --fix
+    exit 1
+  fi
+
+  docker run \
+    -v "${ROOT}:/opt/project" \
+    -w /opt/project \
+    node:20-alpine yarn lint
+
+}
+
+function bin::eslint::help() {
+  bin::eslint::description
+
+  say "
+  options:
+  @green[[--fix]]\t\t\t will run eslint with autofix option enabled
+  "
+}
+
+
+function bin::eslint::description() {
+  # shellcheck disable=SC2028
+  echo "Run eslint static checks"
+}

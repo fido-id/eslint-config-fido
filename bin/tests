@@ -1,0 +1,33 @@
+#!/bin/bash
+
+source "${ROOT}/bin/eslint"
+
+function bin::tests::execute() {
+  bin::tests::execute $@ && local tests="✔" || local tests="✘"
+   bin::eslint::execute $@ && local eslint="✔" || local eslint="✘"
+   
+   say "
+
+  @b[[.::Build recap::.]]
+  @${eslint}Linting\t: @b[[${eslint} ]]
+  @${tests}Tests\t: @b[[${tests} ]]
+"
+
+  if [[ ${eslint} == "✘" || ${tests} == "✘" ]]; then exit 1; fi # Ensure consistent exit code
+  exit 0
+}
+
+function bin::tests::execute() {
+  docker run \
+    -v "${ROOT}:/opt/project" \
+    -w /opt/project \
+    node:20-alpine yarn test
+}
+
+function bin::tests::help() {
+  say "$(bin::tests::description)"
+}
+
+function bin::tests::description() {
+  echo "Run a full check using statics and tests"
+}
