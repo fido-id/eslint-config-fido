@@ -1,9 +1,6 @@
 # eslint-config-fido
 
-Shared ESLint configs for React projects.
-
-> **Warning:** This package has only been tested with ESLint 8. Compatibility with other versions is not guaranteed.
-
+Shared ESLint configs for Typescript & React projects.
 
 ## Table of Contents
 
@@ -57,7 +54,6 @@ module.exports = [
 ```
 
 ## CLI Usage
-
 
 This package provides a CLI for running tests, linting, and installing dependencies:
 
