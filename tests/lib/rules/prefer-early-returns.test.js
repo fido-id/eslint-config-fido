@@ -1,9 +1,5 @@
-const { RuleTester } = require("eslint");
+const { tester } = require("../../tester");
 const rule = require("../../../src/lib/rules/prefer-early-returns");
-
-const tester = new RuleTester({
-  parserOptions: { ecmaVersion: "latest", sourceType: "module" },
-});
 
 tester.run("prefer-early-return", rule, {
   valid: [

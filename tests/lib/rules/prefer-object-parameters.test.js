@@ -1,13 +1,5 @@
-const { RuleTester } = require("eslint");
+const { tester } = require("../../tester");
 const rule = require("../../../src/lib/rules/prefer-object-parameters");
-const tester = new RuleTester({
-  // Make sure classes and method shorthand are parsed
-  parserOptions: {
-    ecmaVersion: 2022,
-    sourceType: "module",
-    ecmaFeatures: { globalReturn: false },
-  },
-});
 
 tester.run("prefer-object-parameters", rule, {
   valid: [

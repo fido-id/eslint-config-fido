@@ -1,13 +1,5 @@
-const { RuleTester } = require("eslint");
+const { tester } = require("../../tester");
 const rule = require("../../../src/lib/rules/mui-prefer-components");
-
-const tester = new RuleTester({
-  parserOptions: {
-    ecmaVersion: 2022,
-    sourceType: "module",
-    ecmaFeatures: { jsx: true },
-  },
-});
 
 tester.run("mui-prefer-components", rule, {
   valid: [
