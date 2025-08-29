@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/fido-id/eslint-config-fido/compare/v2.0.0...v2.1.0) (2025-08-29)
+
+
+### Features
+
+* **eslint:** migrate to eslint 9 ([#3](https://github.com/fido-id/eslint-config-fido/issues/3)) ([ff2c05e](https://github.com/fido-id/eslint-config-fido/commit/ff2c05ee295aa38c8f192534df951feb8a4d662d))
+
 # [2.0.0](https://github.com/fido-id/eslint-config-fido/compare/v1.3.0...v2.0.0) (2025-08-08)
 
 
