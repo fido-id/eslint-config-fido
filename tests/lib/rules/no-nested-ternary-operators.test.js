@@ -1,11 +1,7 @@
-const { RuleTester } = require("eslint");
+const { tester } = require("../../tester");
 const rule = require("../../../src/lib/rules/no-nested-ternary-operators");
 
-const ruleTester = new RuleTester({
-  parserOptions: { ecmaVersion: "latest", sourceType: "module" },
-});
-
-ruleTester.run("no-nested-ternary-operators", rule, {
+tester.run("no-nested-ternary-operators", rule, {
   valid: [
     // valid ternary
     `const x = a ? b : c;`,
