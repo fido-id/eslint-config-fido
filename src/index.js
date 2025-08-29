@@ -1,3 +1,4 @@
+const neostandard = require("neostandard");
 const eslintPluginPrettierRecommended = require("eslint-plugin-prettier/recommended");
 const eslintTsEslint = require("typescript-eslint");
 const globals = require("globals");
@@ -27,7 +28,9 @@ const plugin = {
 
 // --- Base config (no React) --------------------------------------------------
 const baseRegistration = {
-  plugins: { [plugin.meta.namespace]: plugin },
+  plugins: {
+    [plugin.meta.namespace]: plugin,
+  },
   rules: {
     // Custom rules
     "tf/no-nested-ternary-operators": "error",
@@ -67,15 +70,23 @@ const reactRegistration = {
     "tf/mui-prefer-components": "error",
   },
 };
+
 Object.assign(plugin.configs, {
   recommended: [
     eslintPluginPrettierRecommended,
     ...eslintTsEslint.configs.strict,
+    ...neostandard({
+      noStyle: true,
+      noJsx: true,
+    }),
     baseRegistration,
   ],
   react: [
     eslintPluginPrettierRecommended,
     ...eslintTsEslint.configs.strict,
+    ...neostandard({
+      noStyle: true,
+    }),
     reactRecommended,
     reactJSXRuntime,
     reactRegistration,
