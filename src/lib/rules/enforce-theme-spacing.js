@@ -20,36 +20,56 @@ function checkStyleObject(context, styleObject) {
     ) {
       const val = prop.value;
 
-      // numerico o stringa hard-coded
+      let isThemeSpacing = false;
+
+      // theme.spacing(...)
       if (
-        val.type === "Literal" &&
-        (typeof val.value === "number" || typeof val.value === "string")
+        val.type === "CallExpression" &&
+        val.callee.type === "MemberExpression" &&
+        val.callee.object.name === "theme" &&
+        val.callee.property.name === "spacing"
       ) {
+        isThemeSpacing = true;
+      }
+
+      if (!isThemeSpacing) {
         context.report({
           node: prop,
           messageId: "requireThemeSpacing",
           data: { prop: prop.key.name },
         });
       }
-
-      // call expression ma non theme.spacing(...)
-      if (val.type === "CallExpression") {
-        if (
-          !(
-            val.callee.type === "MemberExpression" &&
-            val.callee.object.name === "theme" &&
-            val.callee.property.name === "spacing"
-          )
-        ) {
-          context.report({
-            node: prop,
-            messageId: "requireThemeSpacing",
-            data: { prop: prop.key.name },
-          });
-        }
-      }
     }
   });
+}
+
+function checkStyledArg(context, arg) {
+  if (!arg) return;
+
+  if (arg.type === "ObjectExpression") {
+    checkStyleObject(context, arg);
+  }
+
+  if (
+    arg.type === "ArrowFunctionExpression" ||
+    arg.type === "FunctionExpression"
+  ) {
+    if (arg.body.type === "ObjectExpression") {
+      checkStyleObject(context, arg.body);
+    }
+
+    if (arg.body.type === "BlockStatement") {
+      arg.body.body.forEach((stmt) => {
+        if (
+          stmt.type === "ReturnStatement" &&
+          stmt.argument &&
+          stmt.argument.type === "ObjectExpression"
+        ) {
+          checkStyleObject(context, stmt.argument);
+        }
+      });
+    }
+  }
 }
 
 module.exports = {
@@ -68,7 +88,7 @@ module.exports = {
   },
   create(context) {
     return {
-      // <Box style={{ ... }} />
+      // JSX style / sx
       JSXAttribute(node) {
         if (
           (node.name.name === "style" || node.name.name === "sx") &&
@@ -80,36 +100,19 @@ module.exports = {
         }
       },
 
-      // styled(Box)({ padding: 16 })
+      // styled(...)({ ... }) o styled.div({ ... })
       CallExpression(node) {
-        if (
-          node.callee.type === "CallExpression" &&
-          node.callee.callee.name === "styled" &&
-          node.arguments.length > 0
-        ) {
-          const arg = node.arguments[0];
-          if (arg.type === "ObjectExpression") {
-            checkStyleObject(context, arg);
-          }
-        }
-      },
+        const callee = node.callee;
 
-      // styled.div({ padding: 16 })
-      MemberExpression(node) {
-        if (
-          node.object &&
-          node.object.name === "styled" &&
-          node.parent &&
-          node.parent.type === "CallExpression"
-        ) {
-          const callExpr = node.parent;
-          if (callExpr.arguments.length > 0) {
-            const arg = callExpr.arguments[0];
-            if (arg.type === "ObjectExpression") {
-              checkStyleObject(context, arg);
-            }
-          }
-        }
+        const isStyledCall =
+          (callee.type === "CallExpression" &&
+            callee.callee.name === "styled") ||
+          (callee.type === "MemberExpression" &&
+            callee.object.name === "styled");
+
+        if (!isStyledCall) return;
+
+        node.arguments.forEach((arg) => checkStyledArg(context, arg));
       },
     };
   },

@@ -3,24 +3,40 @@ const rule = require("../../../src/lib/rules/enforce-theme-spacing");
 
 tester.run("enforce-theme-spacing", rule, {
   valid: [
-    { code: `<Box style={{ padding: theme.spacing(2) }} />` },
-    { code: `<Element style={{ marginTop: theme.spacing(1) }} />` },
-    { code: `<Element sx={{ marginTop: theme.spacing(1) }} />` },
-    {
-      code: `<Box style={{ padding: theme.spacing(4), margin: theme.spacing(2) }} />`,
-    },
+    `<Box style={{ padding: theme.spacing(2) }} />`,
+    `<Box sx={{ marginTop: theme.spacing(1) }} />`,
+    `const MyBox = styled(Box)({ padding: theme.spacing(2) });`,
+    `const Div = styled.div({ margin: theme.spacing(2) });`,
+    `const FuncBox = styled(Box)(() => ({ padding: theme.spacing(2) }));`,
+    `const BlockBox = styled(Box)(() => { return { marginTop: theme.spacing(3) }; });`,
   ],
   invalid: [
     {
-      code: `<Typography style={{ padding: 16 }} />`,
+      code: `<Box style={{ padding: 16 }} />`,
       errors: [{ messageId: "requireThemeSpacing" }],
     },
     {
-      code: `<div sx={{ padding: 16 }} />`,
+      code: `<Box sx={{ marginTop: "20px" }} />`,
       errors: [{ messageId: "requireThemeSpacing" }],
     },
     {
-      code: `<Element style={{ marginTop: "10px" }} />`,
+      code: `const MyBox = styled(Box)({ padding: 10 });`,
+      errors: [{ messageId: "requireThemeSpacing" }],
+    },
+    {
+      code: `const Div = styled.div({ marginBottom: "8px" });`,
+      errors: [{ messageId: "requireThemeSpacing" }],
+    },
+    {
+      code: `const StyledBigButton = styled(Button)(() => ({ marginTop: 8 }));`,
+      errors: [{ messageId: "requireThemeSpacing" }],
+    },
+    {
+      code: `const BlockBox = styled(Box)(() => { return { padding: 12 }; });`,
+      errors: [{ messageId: "requireThemeSpacing" }],
+    },
+    {
+      code: `<Box style={{ margin: someVar }} />`,
       errors: [{ messageId: "requireThemeSpacing" }],
     },
   ],
