@@ -18,6 +18,14 @@ tester.run("correct-variant-typography", rule, {
       errors: [{ messageId: "invalidVariant" }],
     },
     {
+      code: `<Typography variant="12_400" style={{fontSize:12}}>Hello</Typography>`,
+      errors: [{ messageId: "forbiddenFontStyle" }],
+    },
+    {
+      code: `<Typography variant="12_400" style={{fontWeight:12}}>Hello</Typography>`,
+      errors: [{ messageId: "forbiddenFontStyle" }],
+    },
+    {
       code: `<Typography variant="123_45">Test</Typography>`,
       errors: [{ messageId: "invalidVariant" }],
     },

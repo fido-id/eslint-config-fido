@@ -9,6 +9,7 @@ const disallowedProps = [
   "paddingRight",
   "paddingBottom",
   "paddingLeft",
+  "gap",
 ];
 
 function checkStyleObject(context, styleObject) {
@@ -19,7 +20,6 @@ function checkStyleObject(context, styleObject) {
       disallowedProps.includes(prop.key.name)
     ) {
       const val = prop.value;
-
       let isThemeSpacing = false;
 
       // theme.spacing(...)
@@ -30,6 +30,22 @@ function checkStyleObject(context, styleObject) {
         val.callee.property.name === "spacing"
       ) {
         isThemeSpacing = true;
+
+        // controllo argomento
+        if (val.arguments.length === 1) {
+          const arg = val.arguments[0];
+          if (arg.type === "Literal" && typeof arg.value === "number") {
+            const num = arg.value;
+            const valid = num % 0.5 === 0;
+            if (!valid) {
+              context.report({
+                node: arg,
+                messageId: "invalidThemeSpacingValue",
+                data: { prop: prop.key.name, value: num },
+              });
+            }
+          }
+        }
       }
 
       if (!isThemeSpacing) {
@@ -84,6 +100,7 @@ module.exports = {
     messages: {
       requireThemeSpacing:
         "Avoid hard-coded '{{prop}}'. Use theme.spacing(n) instead.",
+      invalidThemeSpacingValue: "Only value like 0.5, 1,1.5 are allowed",
     },
   },
   create(context) {
