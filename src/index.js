@@ -7,6 +7,9 @@ const pkg = require("../package.json");
 
 // local rules
 const noNestedTernaryOperators = require("./lib/rules/no-nested-ternary-operators");
+const correctVariantTypography = require("./lib/rules/correct-variant-typography");
+const noExplicitAs = require("./lib/rules/no-explicit-as");
+const enforceThemeSpacing = require("./lib/rules/enforce-theme-spacing");
 const preferEarlyReturns = require("./lib/rules/prefer-early-returns");
 const preferObjectParameters = require("./lib/rules/prefer-object-parameters");
 const muiPreferComponents = require("./lib/rules/mui-prefer-components");
@@ -23,6 +26,9 @@ const plugin = {
     "prefer-early-returns": preferEarlyReturns,
     "prefer-object-parameters": preferObjectParameters,
     "mui-prefer-components": muiPreferComponents,
+    "correct-variant-typography": correctVariantTypography,
+    "no-explicit-as": noExplicitAs,
+    "enforce-theme-spacing": enforceThemeSpacing,
   },
 };
 
@@ -36,7 +42,9 @@ const baseRegistration = {
     "tf/no-nested-ternary-operators": "error",
     "tf/prefer-early-returns": "error",
     "tf/prefer-object-parameters": "error",
-
+    "tf/correct-variant-typography": "error",
+    "tf/no-explicit-as": "error",
+    "tf/enforce-theme-spacing": "error",
     // General TypeScript/JavaScript rules (no react/* rules here)
     "@typescript-eslint/consistent-type-assertions": "warn",
     "no-promise-executor-return": "warn",
