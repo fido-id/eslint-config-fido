@@ -24,7 +24,7 @@ module.exports = {
         ) {
           const variantAttr = node.attributes.find(
             (attr) =>
-              attr.type === "JSXAttribute" && attr.name.name === "variant"
+              attr.type === "JSXAttribute" && attr.name.name === "variant",
           );
 
           if (variantAttr && variantAttr.value?.type === "Literal") {

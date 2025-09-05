@@ -6,7 +6,7 @@ tester.run("correct-variant-typography", rule, {
   valid: [
     { code: `<Typography variant="12_400">Hello</Typography>` },
     { code: `<Typography variant="99_999">World</Typography>` },
-    { code: `<OtherComponent variant="body2" />` }, 
+    { code: `<OtherComponent variant="body2" />` },
   ],
   invalid: [
     {
