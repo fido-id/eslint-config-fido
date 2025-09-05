@@ -3,6 +3,7 @@ const rule = require("../../../src/lib/rules/no-explicit-as");
 
 tester.run("no-explicit-as", rule, {
   valid: [
+    { code: `const x = "foo" as const;` },
     { code: `const x: number = 5;` },
     {
       code: `function isString(val: unknown): val is string { return typeof val === "string"; }`,
