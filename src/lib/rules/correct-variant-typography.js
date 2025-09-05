@@ -18,7 +18,6 @@ module.exports = {
   create(context) {
     return {
       JSXOpeningElement(node) {
-      
         if (
           node.name.type === "JSXIdentifier" &&
           node.name.name === "Typography"
