@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/fido-id/eslint-config-fido/compare/v2.2.0...v2.2.1) (2025-09-05)
+
+
+### Bug Fixes
+
+* **fix "as" rule per la keyword cost:** fix "as" rule per la keyword … ([#15](https://github.com/fido-id/eslint-config-fido/issues/15)) ([11d0bb5](https://github.com/fido-id/eslint-config-fido/commit/11d0bb53c3536644ee4774f603e14f756b93027b))
+
 # [2.2.0](https://github.com/fido-id/eslint-config-fido/compare/v2.1.0...v2.2.0) (2025-09-05)
 
 
