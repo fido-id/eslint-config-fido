@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/fido-id/eslint-config-fido/compare/v2.2.1...v2.2.2) (2025-09-14)
+
+
+### Bug Fixes
+
+* **rule:** handle JSXSpreadAttribute in Typography props ([3132935](https://github.com/fido-id/eslint-config-fido/commit/3132935182e95f353d2fef41d5481956847e3eae))
+
 ## [2.2.1](https://github.com/fido-id/eslint-config-fido/compare/v2.2.0...v2.2.1) (2025-09-05)
 
 
