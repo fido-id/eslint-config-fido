@@ -7,6 +7,9 @@ tester.run("correct-variant-typography", rule, {
     { code: `<Typography variant="12_400">Hello</Typography>` },
     { code: `<Typography variant="99_999">World</Typography>` },
     { code: `<OtherComponent variant="body2" />` },
+    {
+      code: `<Typography{...foo} sx={{ textDecoration: 'none' }}>With spread operator</Typography>`,
+    },
   ],
   invalid: [
     {

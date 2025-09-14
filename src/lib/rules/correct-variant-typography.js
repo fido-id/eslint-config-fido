@@ -69,7 +69,11 @@ module.exports = {
           }
 
           node.attributes.forEach((attr) => {
-            if (attr.name.name === "style" || attr.name.name === "sx") {
+            if (
+              attr.type === "JSXAttribute" &&
+              attr.name &&
+              (attr.name.name === "style" || attr.name.name === "sx")
+            ) {
               checkForbiddenStyle(attr);
             }
           });
